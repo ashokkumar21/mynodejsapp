@@ -1,0 +1,13 @@
+  
+kind: Service
+apiVersion: v1
+metadata:
+  name: mynodejsapp
+spec:
+  selector:
+    app: mynodejsapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer  
