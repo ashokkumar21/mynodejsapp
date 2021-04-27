@@ -4,6 +4,16 @@ pipeline {
         DOCKER_TAG = getDockerTag()
     }
     stages{
+        
+        stage('Git Checkout'){
+		git credentialsId: 'github', 
+		    url: 'https://github.com/ashokkumar21/mynodejsapp',
+			branch: "${params.gitBranch}"
+	}
+	
+	stage('Maven Build'){
+		sh 'mvn clean package'
+	}
         stage('Build Docker Image'){
             steps{
                 sh "docker build . -t ashokkumar21/mynodejsapp:${DOCKER_TAG} "
