@@ -1,14 +1,23 @@
 pipeline {
     agent any
+    
+    /* Declaring the environment variables for fetching the latest docker version with docker tag. We can get this from jenkins configuration tools*/
     environment{
         DOCKER_TAG = getDockerTag()
     }
     stages{
         
+	/* Pull the gitrepo through scm changes by the team */
         stage('Git Checkout'){
 		git credentialsId: 'github', 
 		    url: 'https://github.com/ashokkumar21/mynodejsapp',
 			branch: "${params.gitBranch}"
+	}
+	
+	stage('Install dependencies'){
+		steps{
+		sh 'npm install'
+		}
 	}
 	
         stage('Build Docker Image'){
