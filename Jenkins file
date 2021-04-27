@@ -34,7 +34,7 @@ pipeline {
             }
         }
 	
-	/* Deploy the docker img to kubernetes cluster */
+	/* Deploy the docker img on kubernetes cluster to ec2 prod instance */
         stage('Deploy to k8s'){
             steps{
                 sh "chmod +x changeTag.sh"
