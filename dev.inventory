@@ -1,0 +1,3 @@
+#prodip ansible_user=ec2-user ansible_connection=ssh (sample ip given below)
+
+172.31.12.137 ansible_user=ec2-user ansible_connection=ssh
