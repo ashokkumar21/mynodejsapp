@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    environment{
+        DOCKER_TAG = getDockerTag()
+    }
+    stages{
+        stage('Build Docker Image'){
+            steps{
+                sh "docker build . -t ashokyenninti21/mynodejsapp:${DOCKER_TAG} "
+            }
+        }
+        stage('DockerHub Push'){
+            steps{
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u username -p ${dockerHubPwd}"
+                    sh "docker push username/mynodejsapp:${DOCKER_TAG}"
+                }
+            }
+        }
+        stage('Deploy to Production server'){
+            steps{
+                ansiblePlaybook extras: "-e tag=${env.DOCKER_TAG}", 
+                                credentialsId: 'slave-one', 
+                                playbook: 'ansible/docker-deploy.yml',
+                                inventory: 'ansible/dev.inventory'
+            }
+        }
