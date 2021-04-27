@@ -33,6 +33,8 @@ pipeline {
                 }
             }
         }
+	
+	/* Deploy the docker img to kubernetes cluster */
         stage('Deploy to k8s'){
             steps{
                 sh "chmod +x changeTag.sh"
