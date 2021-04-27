@@ -1,8 +1,8 @@
 {
-  "name": "docker_web_app",
+  "name": "Mynodesjsapp",
   "version": "1.0.0",
   "description": "Node.js application deploy to Kubernetes cluster",
-  "author": "First Last <first.last@example.com>",
+  "author": "ashok yenninti <ashok.yenninti@example.com>",
   "main": "node.js",
   "scripts": {
     "start": "node.js"
