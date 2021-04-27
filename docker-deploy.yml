@@ -1,6 +1,7 @@
 ---
 
-- hosts: ec2@prodserverip
+# Mention your prod instance
+- hosts: ec2@xxx.xxx.xx.x
   become: True
   tasks:
     - name: install pip
@@ -23,5 +24,5 @@
     - name: Create  container
       docker_container:
         name: nodeapp
-        image: kammana/node-app:{{tag}}
+        image: ashokyenninti/mynodejsapp:{{tag}}
         published_ports: ["8080:8080"]
