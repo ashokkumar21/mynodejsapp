@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mynodejsapp
+  labels:
+    app: mynodejsapp
+spec:
+  containers:
+    - name: mynodejsapp
+      image: ashokyenninti21/mynodejsapp:v1
+      ports:
+        - containerPort: 8080
